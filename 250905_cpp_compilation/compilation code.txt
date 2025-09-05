@@ -1,0 +1,17 @@
+командная строка:
+
+cd "C:\Program Files\mingw64\bin"
+
+g++ "C:\Program Files\IT\CODE\kmms_prog_homework\250905_cpp_compilation\test.cpp" -o "C:\Program Files\IT\CODE\kmms_prog_homework\250905_cpp_compilation\test1" 
+
+cd "C:\Program Files\IT\CODE\kmms_prog_homework\250905_cpp_compilation"
+
+test1.exe
+
+вывод командной строки:
+
+C:\Program Files\mingw64\bin>g++ "C:\Program Files\IT\CODE\kmms_prog_homework\250905_cpp_compilation\test.cpp" -o "C:\Program Files\IT\CODE\kmms_prog_homework\250905_cpp_compilation\test1"
+C:\Program Files\mingw64\bin>cd "C:\Program Files\IT\CODE\kmms_prog_homework\250905_cpp_compilation"
+C:\Program Files\IT\CODE\kmms_prog_homework\250905_cpp_compilation>test1.exe
+hello world! this is my first program!
+C:\Program Files\IT\CODE\kmms_prog_homework\250905_cpp_compilation>
