@@ -1,12 +1,10 @@
 #include "sortings.hpp"
 
-#include <vector>
-
-void biv::sortings::merge(std::vector<int>& arr, int left, int mid, int right) { 
+void sort::merge(int* arr, int left, int mid, int right) { 
 	int n1 = mid - left + 1;
 	int n2 = right - mid;
-	
-	std::vector<int> L(n1), R(n2);
+	int* L = new int[n1];
+	int* R = new int[n2];
 	
 	for (int i = 0; i < n1; ++i)
 		L[i] = arr[left + i];
@@ -14,6 +12,7 @@ void biv::sortings::merge(std::vector<int>& arr, int left, int mid, int right) {
 		R[j] = arr[mid + j + 1];
 	
 	int i = 0, j = 0, k = left;
+	
 	while (i < n1 && j < n2) {
 		if (L[i] <= R[j]) {
 			arr[k] = L[i];
@@ -24,13 +23,11 @@ void biv::sortings::merge(std::vector<int>& arr, int left, int mid, int right) {
 		}
 	k++;
 	}
-	
 	while (i < n1) {
 		arr[k] = L[i];
 		i++;
 		k++;
 	}
-	
 	while (j < n2) {
 		arr[k] = R[j];
 		j++;
@@ -38,13 +35,11 @@ void biv::sortings::merge(std::vector<int>& arr, int left, int mid, int right) {
 	}
 }
 
-void biv::sortings::mergeSort(std::vector<int>& arr, int left, int right) {
+void sort::mergeSort(int* arr, int left, int right) {
 	if (left < right) {
 		int mid = (left + right) / 2;
-		
 		mergeSort(arr, left, mid);
 		mergeSort(arr, mid + 1, right);
-		
 		merge(arr, left, mid, right);
 	}
 }
