@@ -17,7 +17,7 @@ typedef struct SObject {
         float horizSpeed;
 } TObject;
 
-void ClearMap() {
+void ClearMap(char map[mapHeight][mapWidth + 1]) {
         for (int i = 0; i < mapWidth; i++)
                 map[0][i] = ' ';
         map[0][mapWidth] = '\0';
@@ -25,7 +25,7 @@ void ClearMap() {
                 strcpy(map[j], map[0]);
 }
 
-void ShowMap() {
+void ShowMap(char map[mapHeight][mapWidth + 1]) {
         map[mapHeight -  1][mapWidth - 1] = '\0';
         for (int j = 0; j < mapHeight; j++) {
                 mvprintw(j, 0, "%s", map[j]);
@@ -148,7 +148,7 @@ bool IsPosInMap(int x, int y) {
         return ((x >= 0) && (x < mapWidth) && (y >= 0) && (y < mapHeight));
 }
 
-void PutObjectOnMap(TObject obj) {
+void PutObjectOnMap(void ShowMap(char map[mapHeight][mapWidth + 1], TObject obj) {
         int ix = (int)round(obj.x);
         int iy = (int)round(obj.y);
         int iWidth = (int)round(obj.width);
@@ -283,6 +283,7 @@ int main() {
         int brickLength = 0;
         TObject *moving = NULL;
         int movingLength = 0;
+        char map[mapHeight][mapWidth + 1];
 
         int level = 1;
         int score = 0;
@@ -305,7 +306,7 @@ int main() {
         CreateLevel(level, mario, score, maxLvl);
 
         while (1) {
-                ClearMap();
+                ClearMap(map);
 
                 int ch = getch();
                 if ((mario.IsFly == false) && (ch == ' ')) mario.vertSpeed = -0.9;
@@ -331,10 +332,10 @@ int main() {
                         PutObjectOnMap(moving[i]);
                 }
 
-                PutObjectOnMap(mario);
+                PutObjectOnMap(map, mario);
                 PutScoreOnMap(score);
 
-                ShowMap();
+                ShowMap(map);
                 usleep(10000);
         }
 
