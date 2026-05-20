@@ -1,9 +1,9 @@
-#include <stdlib.h>
 #include <math.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include <ncurses.h>
 #include <stdbool.h>
 #include <string.h>
+#include <unistd.h>
 
 #define mapWidth 80
 #define mapHeight 25
@@ -238,7 +238,7 @@ void CreateLevel(int lvl) {
 
                 InitObject(GetNewBrick(), 60, 15, 40, 10, '#');
 
-                InitObject(GetNewBrick(), 60, 5, 10, 3, '-');
+                InitObject(GetNewBrick(), 60, 100, 10, 3, '-');
                 InitObject(GetNewBrick(), 70, 5, 5, 3, '?');
                 InitObject(GetNewBrick(), 75, 5, 5, 3, '-');
                 InitObject(GetNewBrick(), 80, 5, 5, 3, '?');
@@ -246,8 +246,8 @@ void CreateLevel(int lvl) {
 
                 InitObject(GetNewBrick(), 100, 20, 20, 5, '#');
                 InitObject(GetNewBrick(), 120, 15, 10, 10, '#');
-                InitObject(GetNewBrick(), 150, 20, 40, 5, '#');
-                InitObject(GetNewBrick(), 210, 15, 10, 10, '+');
+                InitObject(GetNewBrick(), 134, 20, 40, 5, '#');
+                InitObject(GetNewBrick(), 177, 15, 5, 10, '+');
 
                 InitObject(GetNewMoving(), 25, 10, 3, 2, 'o');
                 InitObject(GetNewMoving(), 80, 10, 3, 2, 'o');
