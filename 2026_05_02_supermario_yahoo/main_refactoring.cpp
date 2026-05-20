@@ -49,7 +49,7 @@ void InitObject(TObject *obj, float xPos, float yPos, float oWidth, float oHeigh
 
 void CreateLevel(int lvl, int &score, int &maxLvl);
 bool IsCollision(TObject o1, TObject o2);
-TObject *GetNewMoving();
+TObject *GetNewMoving(TObject *&moving, int &movingLength);
 
 void PlayerDead(int level, TObject &mario, int &score, int &maxLvl) {
         bkgd(COLOR_PAIR(2));
@@ -94,7 +94,7 @@ void VertMoveObject(TObject *obj, TObject *brick, int bricklength, int &level, &
         }
 }
 
-void DeleteMoving(int i) {
+void DeleteMoving(TObject *&moving, int &movingLength, int i) {
         movingLength--;
         moving[i] = moving[movingLength];
         moving = (TObject*)realloc(moving, sizeof(*moving) * movingLength);
@@ -106,7 +106,7 @@ void MarioCollision(TObject &mario, int &score, int level, int &maxLvl) {
                         if (moving[i].cType == 'o') {
                                 if ((mario.IsFly == true) && (mario.vertSpeed > 0) && (mario.y + mario.height < moving[i].y + moving[i].height * 0.5)) {
                                         score += 50;
-                                        DeleteMoving(i);
+                                        DeleteMoving(moving, movingLength, i);
                                         i--;
                                         continue;
                                 } else {
@@ -115,7 +115,7 @@ void MarioCollision(TObject &mario, int &score, int level, int &maxLvl) {
                                 }
                                 if (moving[i].cType == '$') {
                                         score += 100;
-                                        DeleteMoving(i);
+                                        DeleteMoving(moving, movingLength, i);
                                         i--;
                                         continue;
                                 }
@@ -192,7 +192,7 @@ TObject *GetNewBrick(TObject &brick, int &brickLength) {
         return brick + brickLength - 1;
 }
 
-TObject *GetNewMoving() {
+TObject *GetNewMoving(TObject *&moving, int &movingLength) {
         movingLength++;
         moving = (TObject*)realloc(moving, sizeof(*moving) * movingLength);
         return moving + movingLength - 1;
@@ -281,7 +281,8 @@ int main() {
         TObject mario;
         TObject *brick = NULL;
         int brickLength = 0;
-
+        TObject *moving = NULL;
+        int movingLength = 0;
 
         int level = 1;
         int score = 0;
@@ -323,7 +324,7 @@ int main() {
                         VertMoveObject(moving + i);
                         HorizonMoveObject(moving + i);
                         if (moving[i].y > mapHeight) {
-                                DeleteMoving(i);
+                                DeleteMoving(moving, movingLength, i);
                                 i--;
                                 continue;
                         }
