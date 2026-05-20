@@ -68,7 +68,7 @@ void PlayerDead(int level, int &score, int &maxLvl) {
         CreateLevel(level, score, maxLvl);
 }
 
-void VertMoveObject(TObject *obj) {
+void VertMoveObject(TObject *obj, int &level, &score, int maxLvl) {
         (*obj).IsFly = true;
         (*obj).vertSpeed += 0.05;
         SetObjectPos(obj, (*obj).x, (*obj).y + (*obj).vertSpeed);
@@ -87,15 +87,15 @@ void VertMoveObject(TObject *obj) {
                         (*obj).y -= (*obj).vertSpeed;
                         (*obj).vertSpeed = 0;
                         if (brick[i].cType == '+'){
-                                (*level)++;
-                                if ((*level) > *maxLvl) *level = 1;
+                                level++;
+                                if (level > maxLvl) level = 1;
 
                                 bkgd(COLOR_PAIR(3));
                                 refresh();
                                 usleep(300000);
                                 bkgd(COLOR_PAIR(1));
                                 refresh();
-                                CreateLevel(level, &score, &maxLvl);
+                                CreateLevel(level, score, maxLvl);
                         }
                         break;
                 }
@@ -143,7 +143,7 @@ void HorizonMoveObject(TObject *obj) {
 
         if (obj[0].cType == 'o') {
                 TObject tmp = *obj;
-                VertMoveObject(&tmp);
+                VertMoveObject(&tmp, level, score, maxLvl);
                 if (tmp.IsFly == true) {
                         obj[0].x -= obj[0].horizSpeed;
                         obj[0].horizSpeed = -obj[0].horizSpeed;
@@ -318,7 +318,7 @@ int main() {
 
                 if (mario.y > mapHeight - mario.height) PlayerDead(level, score, maxLvl);
 
-                VertMoveObject(&mario);
+                VertMoveObject(&mario, level, score, maxLvl);
                 MarioCollision(score, level, maxLvl);
 
                 for (int i = 0; i < brickLength; i++)
