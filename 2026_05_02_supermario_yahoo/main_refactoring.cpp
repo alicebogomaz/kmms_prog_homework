@@ -59,13 +59,13 @@ void CreateLevel(int lvl, int *score, int *maxLvl);
 bool IsCollision(TObject o1, TObject o2);
 TObject *GetNewMoving();
 
-void PlayerDead() {
+void PlayerDead(int level, int *score, int *maxLvl) {
         bkgd(COLOR_PAIR(2));
         refresh();
         usleep(300000);
         bkgd(COLOR_PAIR(1));
         refresh();
-        CreateLevel(level, &score, &maxLvl);
+        CreateLevel(level, score, maxLvl);
 }
 
 void VertMoveObject(TObject *obj) {
@@ -118,7 +118,7 @@ void MarioCollision() {
                                         i--;
                                         continue;
                                 } else {
-                                       PlayerDead();
+                                       PlayerDead(level, &score, &maxLvl);
                                 }
                                 }
                                 if (moving[i].cType == '$') {
@@ -316,7 +316,7 @@ int main() {
                 if (ch == 'd') HorizonMoveMap(-1);
                 if (ch == 27) break;
 
-                if (mario.y > mapHeight - mario.height) PlayerDead();
+                if (mario.y > mapHeight - mario.height) PlayerDead(level, &score, &maxLvl);
 
                 VertMoveObject(&mario);
                 MarioCollision();
