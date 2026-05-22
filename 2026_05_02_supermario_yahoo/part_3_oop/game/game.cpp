@@ -57,7 +57,7 @@ namespace orcinix {
 
         for (int i = 0; i < level.getCoinsCount(); i++) {
 
-            Coin& coin = level.getCoins()[i];
+            Coin coin = level.getCoins()[i];
 
             if (Physics::isCollision(mario, coin)) {
                 mario.addScore(100);

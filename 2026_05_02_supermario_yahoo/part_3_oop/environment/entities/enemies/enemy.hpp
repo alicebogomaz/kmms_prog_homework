@@ -10,6 +10,7 @@ namespace orcinix {
             Enemy(float x, float y);
 
             void walk();
+            
     };
 
 }

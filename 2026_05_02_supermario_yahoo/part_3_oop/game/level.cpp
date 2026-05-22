@@ -23,6 +23,14 @@ namespace orcinix {
         delete[] coins;
         delete[] enemies;
 
+        bricks = nullptr;
+        enemies = nullptr;
+        coins = nullptr;
+
+        bricksCount = 0;
+        enemiesCount = 0;
+        coinsCount = 0;
+
         switch (levelNumber) {
 
             case 1:
@@ -75,7 +83,7 @@ namespace orcinix {
 
                 enemies = new Enemy[enemiesCount] {
 
-                    Enemy(25, 10),
+                    Enemy(40, 10),
                     Enemy(80, 10),
                     Enemy(65, 10),
                     Enemy(125, 10),
