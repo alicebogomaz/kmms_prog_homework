@@ -14,13 +14,6 @@ namespace orcinix {
         return score;
     }
 
-    void Player::jump() {
-        if (!isFly) {
-            vertSpeed = -0.9;
-            isFly = true;
-        }
-    }
-
     void Player::moveLeft() {
         x -= horizSpeed;
     }

@@ -13,8 +13,6 @@ namespace orcinix {
             void addScore(int amount);
             int getScore() const;
 
-            void jump();
-
             void moveLeft();
             void moveRight();
     };

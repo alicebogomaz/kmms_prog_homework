@@ -14,7 +14,10 @@ namespace orcinix {
             mario.setHorizSpeed(0.5);
 
         } else if (ch == ' ') {
-            if (!mario.getIsFly()) mario.jump();
+            if (!mario.getIsFly()) {
+                mario.setVertSpeed(-0.8);
+                mario.setIsFly(true);
+            }
 
         } else if (ch == 27) {
             running = false;

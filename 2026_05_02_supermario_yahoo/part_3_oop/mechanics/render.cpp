@@ -43,6 +43,7 @@ namespace orcinix {
         refresh();
         usleep(300000);
         bkgd(COLOR_PAIR(1));
+        clear();
         refresh();
     }
 
@@ -51,6 +52,7 @@ namespace orcinix {
         refresh();
         usleep(300000);
         bkgd(COLOR_PAIR(1));
+        clear();
         refresh();
     }
 

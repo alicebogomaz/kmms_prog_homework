@@ -34,7 +34,7 @@ namespace orcinix {
 
     void Physics::vertMoveObject(Movable& object, Level& level) {
         object.setIsFly(true);
-        object.getVertSpeed() + 0.05;
+        object.setVertSpeed(object.getVertSpeed() + 0.05);
         object.setPos(object.getX(),
                       object.getY() + object.getVertSpeed());
 
@@ -61,6 +61,8 @@ namespace orcinix {
 
             }
         }
+
+        return;
     }
 
 }
