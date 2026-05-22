@@ -137,6 +137,21 @@ namespace orcinix {
         return coinsCount;
     }
 
+    void Level::addCoin(float x, float y) {
+        Coin* newCoins = new Coin[coinsCount + 1];
+
+        for (int i = 0; i < coinsCount; i++) {
+            newCoins[i] = coins[i];
+        }
+
+        newCoins[coinsCount] = Coin(x, y);
+
+        delete[] coins;
+        coins = newCoins;
+        coinsCount++;
+
+    }
+
     void Level::removeCoin(int index) {
         if (coinsCount <= 0) return;
 

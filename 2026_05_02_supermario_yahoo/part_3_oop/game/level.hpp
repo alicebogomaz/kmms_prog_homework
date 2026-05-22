@@ -28,6 +28,7 @@ namespace orcinix {
 
             Coin* getCoins() const;
             int getCoinsCount() const;
+            void addCoin(float x, float y);
             void removeCoin(int index);
 
             Enemy* getEnemies() const;

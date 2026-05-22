@@ -95,6 +95,8 @@ namespace orcinix {
 
                 if (brick.getType() == luckyblock) {
                     brick.setType(empty_luckyblock_platform);
+
+                    level.addCoin(brick.getX() + brick.getWidth() / 2, brick.getY() - 2);
                 }
 
             }

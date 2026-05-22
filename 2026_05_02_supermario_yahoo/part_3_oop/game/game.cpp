@@ -36,6 +36,7 @@ namespace orcinix {
 
                     mario.setVertSpeed(-0.7);
 
+                    mario.addScore(50);
                     level.removeEnemy(i);
                     i--;
 
