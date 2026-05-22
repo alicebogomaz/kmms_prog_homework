@@ -61,7 +61,7 @@ namespace orcinix {
 
                 object.setPos(object.getX() - object.getHorizSpeed(), object.getY());
 
-                if (object.getType() == enemy_walking) {
+                if (object.getType() == enemy_walking || object.getType() == coin) {
                     object.setHorizSpeed(-object.getHorizSpeed());
                 }
 
@@ -82,7 +82,9 @@ namespace orcinix {
 
             if (!isCollision(object, brick)) continue;
 
-            if (object.getVertSpeed() > 0) {
+            if (object.getVertSpeed() > 0 &&
+                object.getY() + object.getHeight() - object.getVertSpeed() <= brick.getY()) {
+
                 object.setPos(object.getX(), brick.getY() - object.getHeight());
 
                 object.setVertSpeed(0);
@@ -96,7 +98,7 @@ namespace orcinix {
                 if (brick.getType() == luckyblock) {
                     brick.setType(empty_luckyblock_platform);
 
-                    level.addCoin(brick.getX() + brick.getWidth() / 2, brick.getY() - 2);
+                    level.addCoin(brick.getX() + brick.getWidth() / 2, brick.getY() - 6);
                 }
 
             }

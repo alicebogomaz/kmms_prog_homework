@@ -51,6 +51,14 @@ namespace orcinix {
 
             Coin& coin = level.getCoins()[i];
 
+            Physics::horizMoveObject(coin, level);
+            Physics::vertMoveObject(coin, level);
+        }
+
+        for (int i = 0; i < level.getCoinsCount(); i++) {
+
+            Coin& coin = level.getCoins()[i];
+
             if (Physics::isCollision(mario, coin)) {
                 mario.addScore(100);
                 level.removeCoin(i);
@@ -92,6 +100,7 @@ namespace orcinix {
 
     void Game::render() {
         clear();
+        Render::updateCamera(mario);
         Render::drawLevel(level);
         Render::drawPlayer(mario);
         Render::drawUI(mario);

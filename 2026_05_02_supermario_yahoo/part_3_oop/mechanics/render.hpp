@@ -13,6 +13,9 @@ namespace orcinix {
             static void drawUI(const Player& player);
             static void deathScreen();
             static void winScreen();
+
+            static int cameraX;
+            static void updateCamera(const Player& player);
     };
 
 }

@@ -5,11 +5,20 @@
 
 namespace orcinix {
 
+    int Render::cameraX = 0;
+    void Render::updateCamera(const Player& player) {
+
+        cameraX = player.getX() - 40;
+        if (cameraX < 0) {
+            cameraX = 0;
+        }
+    }
+
     void Render::drawObject(const GameObject& object) {
         for (int y = 0; y < object.getHeight(); y++) {
             for (int x = 0; x < object.getWidth(); x++) {
                 mvaddch(object.getY() + y,
-                        object.getX() + x,
+                        object.getX() + x - cameraX,
                         object.getSymbol());
             }
         }
