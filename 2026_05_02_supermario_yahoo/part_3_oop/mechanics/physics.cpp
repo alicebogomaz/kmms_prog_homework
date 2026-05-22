@@ -14,20 +14,17 @@ namespace orcinix {
     }
 
     void Physics::horizMoveObject(Movable& object, Level& level) {
-        object.setPos(object.getX() + object.getHorizSpeed(),
-                      object.getY());
+        object.setPos(object.getX() + object.getHorizSpeed(), object.getY());
 
         for (int i = 0; i < level.getBricksCount(); i++) {
-
             Brick& brick = level.getBricks()[i];
 
-            if (!isCollision(object, brick)) continue;
+            if (isCollision(object, brick) &&
+                object.getY() + object.getHeight() > brick.getY() + 1 &&
+                object.getY() < brick.getY() + brick.getHeight() - 1) {
+                    object.setPos(object.getX() - object.getHorizSpeed(), object.getY());
 
-            if (object.getHorizSpeed() > 0) {
-                object.setPos(brick.getX() - object.getWidth(), object.getY());
-
-            } else {
-                object.setPos(brick.getX() + brick.getWidth(), object.getY());
+                    return;
             }
         }
     }

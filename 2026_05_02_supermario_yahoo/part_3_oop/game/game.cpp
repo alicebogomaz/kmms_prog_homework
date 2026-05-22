@@ -7,7 +7,7 @@
 
 namespace orcinix {
 
-    Game::Game() : mario(10, 10) {
+    Game::Game() : mario(20, 12) {
         running = true;
         isDead = false;
 
@@ -82,7 +82,7 @@ namespace orcinix {
     }
 
     void Game::resetLevel() {
-        mario.setPos(10, 10);
+        mario.setPos(20, 12);
         mario.setVertSpeed(0);
         mario.setHorizSpeed(0);
         level.load(currentLevel);
@@ -106,7 +106,7 @@ namespace orcinix {
 
         level.load(currentLevel);
 
-        mario.setPos(10, 10);
+        mario.setPos(20, 12);
         mario.setVertSpeed(0);
         mario.setHorizSpeed(0);
 
