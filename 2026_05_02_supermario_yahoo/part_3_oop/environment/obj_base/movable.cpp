@@ -29,11 +29,11 @@ namespace orcinix {
         return isFly;
     }
 
-    void Movable::setHorizSpeed(float speed) const {
+    void Movable::setHorizSpeed(float speed) {
         horizSpeed = speed;
     }
 
-    void Movable::setVertSpeed(float speed) const {
+    void Movable::setVertSpeed(float speed) {
         vertSpeed = speed;
     }
 

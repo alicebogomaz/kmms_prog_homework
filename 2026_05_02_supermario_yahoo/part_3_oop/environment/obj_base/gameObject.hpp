@@ -27,6 +27,7 @@ namespace orcinix {
             ObjectType getType() const;
 
             void setPos(float newX, float newY);
+            void setType(ObjectType newType);
     };
 
 }

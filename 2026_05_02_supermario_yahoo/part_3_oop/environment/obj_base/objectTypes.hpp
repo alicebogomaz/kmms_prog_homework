@@ -7,7 +7,7 @@ namespace orcinix {
         brick = '#',
         coin = '$',
         empty_luckyblock_platform = '-',
-        enemy = 'o',
+        enemy_walking = 'o',
         finish = '+',
         luckyblock = '?',
         mario = '@'

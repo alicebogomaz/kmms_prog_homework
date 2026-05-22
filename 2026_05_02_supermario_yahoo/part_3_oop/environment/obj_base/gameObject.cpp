@@ -44,4 +44,8 @@ namespace orcinix {
         y = newY;
     }
 
+    void GameObject::setType(ObjectType newType) {
+        type = newType;
+    }
+
 }
