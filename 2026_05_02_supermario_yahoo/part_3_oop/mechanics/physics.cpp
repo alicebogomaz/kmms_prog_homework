@@ -13,7 +13,43 @@ namespace orcinix {
         );
     }
 
+    bool Physics::hasGroundAhead(const Movable& object, const Level& level) {
+        float checkX;
+
+        if (object.getHorizSpeed() > 0) {
+            checkX = object.getX() + object.getWidth() + 1;
+
+        } else {
+            checkX = object.getX() - 1;
+
+        }
+
+        float checkY = object.getY() + object.getHeight() + 1;
+
+        for (int i = 0; i < level.getBricksCount(); i++) {
+            Brick& brick = level.getBricks()[i];
+
+            if (checkX >= brick.getX() &&
+                checkX <= brick.getX() + brick.getWidth() &&
+                checkY >= brick.getY() &&
+                checkY <= brick.getY() + brick.getHeight()) {
+
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
     void Physics::horizMoveObject(Movable& object, Level& level) {
+
+        if (object.getType() == enemy_walking &&
+            !Physics::hasGroundAhead(object, level)) {
+            object.setHorizSpeed(-object.getHorizSpeed());
+
+        }
+
         object.setPos(object.getX() + object.getHorizSpeed(), object.getY());
 
         for (int i = 0; i < level.getBricksCount(); i++) {
@@ -22,9 +58,14 @@ namespace orcinix {
             if (isCollision(object, brick) &&
                 object.getY() + object.getHeight() > brick.getY() + 1 &&
                 object.getY() < brick.getY() + brick.getHeight() - 1) {
-                    object.setPos(object.getX() - object.getHorizSpeed(), object.getY());
 
-                    return;
+                object.setPos(object.getX() - object.getHorizSpeed(), object.getY());
+
+                if (object.getType() == enemy_walking) {
+                    object.setHorizSpeed(-object.getHorizSpeed());
+                }
+
+                return;
             }
         }
     }

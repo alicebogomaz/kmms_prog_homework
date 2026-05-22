@@ -10,10 +10,12 @@ namespace orcinix {
             static bool isCollision(const GameObject& a,
                                     const GameObject& b);
 
+            static bool hasGroundAhead(const Movable& object,
+                                const Level& level);
             static void horizMoveObject(Movable& object,
-                              Level& level);
+                                        Level& level);
             static void vertMoveObject(Movable& object,
-                              Level& level);
+                                       Level& level);
     };
 
 }

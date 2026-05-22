@@ -50,7 +50,7 @@ namespace orcinix {
 
                 enemies = new Enemy[enemiesCount] {
 
-                    Enemy(25, 10),
+                    Enemy(40, 10),
                     Enemy(80, 10)
 
                 };
