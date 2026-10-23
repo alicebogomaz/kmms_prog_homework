@@ -1,6 +1,8 @@
 #include "keyboard_window.hpp"
 #include "keyboard_data.hpp"
 
+#include <QDebug>
+
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPixmap>
@@ -40,18 +42,33 @@ KeyBoardWindow::KeyBoardWindow(QWidget* parent) : QWidget(parent) {
 
 
 void KeyBoardWindow::keyPressEvent(QKeyEvent* event) {
-    QString text = event->text();
-    KeyBoardData data;
-    int code = data.get_code(text);
 
-    if (keyboard->is_key_allowed(code)) {
-        display->setText(display->text() + text.toUpper());
-        keyboard->animate_button(code);
+    int key = event->key();
+    if (key == Qt::Key_Backspace || Qt::Key_Space) {
+        on_key_clicked(key);
+        return;
     }
+
+    const int native = event->nativeVirtualKey();
+    on_key_clicked(native);
 }
 
 
 void KeyBoardWindow::on_key_clicked(int code) {
+    if (code == Qt::Key_Backspace) {
+        QString text = display->text();
+        text.chop(1);
+        display->setText(text);
+        keyboard->animate_button(code);
+        return;
+    }
+
+    if (code == Qt::Key_Space) {
+        display->setText(display->text() + " ");
+        keyboard->animate_button(code);
+        return;
+    }
+
     if (!keyboard->is_key_allowed(code)) {
         return;
     }

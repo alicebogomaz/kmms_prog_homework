@@ -18,12 +18,16 @@ KeyBoard::KeyBoard(const int width, QWidget* parent)
 	KeyBoardButton* backspace_btn = new KeyBoardButton("Удалить");
 	backspace_btn->setMinimumSize(2 * button_width, button_width);
 	keys_layout->addWidget(backspace_btn, 0, 26, 2, 3);
+	buttons[Qt::Key_Backspace] = backspace_btn;
+	connect(backspace_btn, &QPushButton::clicked, this, [this]() {
+		emit key_clicked(Qt::Key_Backspace);
+	});
 
 	// 2-я линия
 	KeyBoardButton* tab_btn = new KeyBoardButton("Tab");
 	tab_btn->setMinimumSize(2 * button_width, button_width);
 	keys_layout->addWidget(tab_btn, 2, 0, 2, 3);
-	
+
 	create_buttons(keyboard_data->get_line2(), keys_layout, 2, 3);
 	
 	// 3-я линия
@@ -52,6 +56,10 @@ KeyBoard::KeyBoard(const int width, QWidget* parent)
 	KeyBoardButton* space = new KeyBoardButton();
 	space->setMinimumSize(8 * button_width, button_width);
 	keys_layout->addWidget(space, 8, 7, 2, 16);
+	buttons[Qt::Key_Space] = space;
+	connect(space, &QPushButton::clicked, this, [this]() {
+		emit key_clicked(Qt::Key_Space);
+	});
 }
 
 void KeyBoard::animate_button(const int code) {
