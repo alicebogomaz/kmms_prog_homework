@@ -4,17 +4,17 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-using biv::WelcomeWindow;
+using aliceB::WelcomeWindow;
 
 WelcomeWindow::WelcomeWindow(QWidget* parent) : QWidget(parent) {
     setWindowTitle("Добро пожаловать!");
     resize(600, 400);
 
-    QLabel* title = new QLabel("Клавиатура ждёт тебя!", this);
+    QLabel* title = new QLabel("Клавик ждёт тебя!", this);
     title->setAlignment(Qt::AlignCenter);
     title->setFont(QFont("Roboto", 28));
 
-    start_button = new QPushButton("Перейти к клавиатуре", this);
+    start_button = new QPushButton("Перейти к Клавику", this);
     start_button->setFont(QFont("Roboto", 20));
 
     QVBoxLayout* layout = new QVBoxLayout(this);

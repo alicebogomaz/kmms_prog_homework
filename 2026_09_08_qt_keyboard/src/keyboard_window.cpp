@@ -1,18 +1,19 @@
 #include "keyboard_window.hpp"
+#include "keyboard_data.hpp"
 
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPixmap>
 #include <QVBoxLayout>
 
-using biv::KeyBoardWindow;
+using aliceB::KeyBoardWindow;
 
 KeyBoardWindow::KeyBoardWindow(QWidget* parent) : QWidget(parent) {
 	const int keyboard_width = 1160;
 	resize(keyboard_width, 710);
-    setWindowTitle("Грустная Клавиатура");
+    setWindowTitle("Хороший Клавик");
 	
-	QPixmap pixmap("img/grustnii-smail.png");
+	QPixmap pixmap("img/klavik.jpg");
 	QLabel* image = new QLabel(this);
 	image->setFixedSize(200, 200);
 	image->setPixmap(pixmap);
@@ -25,7 +26,7 @@ KeyBoardWindow::KeyBoardWindow(QWidget* parent) : QWidget(parent) {
 	display->setMinimumHeight(80);
 	display->setFont(QFont("Roboto", 40));
     display->setReadOnly(true);
-	display->setText("Помоги мне заработать лучше...");
+	display->setText("гав.......");
 
 	keyboard = new KeyBoard(keyboard_width);
 	
@@ -37,13 +38,18 @@ KeyBoardWindow::KeyBoardWindow(QWidget* parent) : QWidget(parent) {
     main_layout->addWidget(keyboard);
 }
 
+
 void KeyBoardWindow::keyPressEvent(QKeyEvent* event) {
-    const int key = event->nativeVirtualKey();
-    if (keyboard->is_key_allowed(key)) {
-        display->setText(display->text() + keyboard->get_key_text(key));
-        keyboard->animate_button(key);
+    QString text = event->text();
+    KeyBoardData data;
+    int code = data.get_code(text);
+
+    if (keyboard->is_key_allowed(code)) {
+        display->setText(display->text() + text.toUpper());
+        keyboard->animate_button(code);
     }
 }
+
 
 void KeyBoardWindow::on_key_clicked(int code) {
     if (!keyboard->is_key_allowed(code)) {

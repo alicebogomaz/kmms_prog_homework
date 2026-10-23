@@ -8,7 +8,7 @@
 
 #include "keyboard.hpp"
 
-namespace biv {
+namespace aliceB {
 	class KeyBoardWindow : public QWidget {
 		Q_OBJECT
 		

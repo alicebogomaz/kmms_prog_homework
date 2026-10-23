@@ -1,7 +1,7 @@
 #include "keyboard_data.hpp"
 
-using biv::KeyData;
-using biv::KeyBoardData;
+using aliceB::KeyData;
+using aliceB::KeyBoardData;
 
 const std::vector<KeyData> KeyBoardData::KEYS = {
 	{192, "Ё"}, {49, "1"}, {50, "2"}, {51, "3"}, {52, "4"}, {53, "5"}, {54, "6"}, 
@@ -28,6 +28,15 @@ std::vector<KeyData> KeyBoardData::get_line3() const {
 
 std::vector<KeyData> KeyBoardData::get_line4() const {
 	return {KEYS.begin() + 37, KEYS.begin() + 47};
+}
+
+int KeyBoardData::get_code(const QString& text) const {
+	for (const KeyData& key : KEYS) {
+		if (key.text == text.toUpper()) {
+			return key.code;
+		}
+	}
+	return -1;
 }
 
 bool KeyBoardData::is_key_allowed(const int code) const noexcept {

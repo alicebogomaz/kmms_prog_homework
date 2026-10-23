@@ -4,7 +4,7 @@
 
 class QPushButton;
 
-namespace biv {
+namespace aliceB {
 	class WelcomeWindow : public QWidget {
 		Q_OBJECT
 

@@ -6,7 +6,7 @@
 #include <QString>
 #include <QWidget>
 
-namespace biv {
+namespace aliceB {
 	class KeyBoardButton : public QPushButton {
 		Q_OBJECT
 		

@@ -1,7 +1,7 @@
 #include "keyboard.hpp"
 #include <QTimer>
 
-using biv::KeyBoard;
+using aliceB::KeyBoard;
 
 KeyBoard::KeyBoard(const int width, QWidget* parent) 
 	: button_width(width / 29), QWidget(parent) {

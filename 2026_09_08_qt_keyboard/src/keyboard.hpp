@@ -10,7 +10,7 @@
 #include "keyboard_data.hpp"
 #include "key_data.hpp"
 
-namespace biv {
+namespace aliceB {
 	class KeyBoard : public QWidget {
 		Q_OBJECT
 		private:
