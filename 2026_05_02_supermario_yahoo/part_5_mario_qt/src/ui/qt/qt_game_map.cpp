@@ -16,9 +16,6 @@ QtGameMap::QtGameMap(int height, int width, Game* game) : QWidget(nullptr), Game
 const QPixmap& QtGameMap::load_sprite(const QString& path) {
     if (!sprites.contains(path)) {
         QString full_path = QDir(QCoreApplication::applicationDirPath()).filePath(path);
-
-        QPixmap pixmap(full_path);
-
         sprites.insert(path, QPixmap(full_path));
     }
 

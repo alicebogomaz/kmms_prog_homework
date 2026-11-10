@@ -8,6 +8,13 @@
 
 namespace biv {
 
+    template <typename T> void delete_objects(std::vector<T*>& objects) {
+        for (T* obj : objects) {
+            delete obj;
+        }
+        objects.clear();
+    }
+
     class QtUIFactory : public UIFactory {
         private:
             QtGameMap* game_map = nullptr;

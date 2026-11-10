@@ -7,8 +7,6 @@ namespace biv {
     public:
         virtual ~QtUIObject() = default;
 
-        virtual int get_left() const noexcept = 0;
-        virtual int get_top() const noexcept = 0;
         virtual int get_width() const noexcept = 0;
         virtual int get_height() const noexcept = 0;
 

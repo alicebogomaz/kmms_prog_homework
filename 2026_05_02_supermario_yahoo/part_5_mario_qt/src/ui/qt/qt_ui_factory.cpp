@@ -6,35 +6,19 @@ QtUIFactory::QtUIFactory(Game* game): UIFactory(game) {}
 
 void QtUIFactory::clear_data() {
     game->remove_objs();
-    if (game_map != nullptr)
-        game_map->remove_objs();
+    game_map->remove_objs();
 
     delete mario;
     mario = nullptr;
-    for (QtBox* obj : boxes)
-        delete obj;
-    for (QtFullBox* obj : full_boxes)
-        delete obj;
-    for (QtShip* obj : ships)
-        delete obj;
-    for (QtEnemy* obj : enemies)
-        delete obj;
-    for (QtFlyingEnemy* obj : flying_enemies)
-        delete obj;
-    for (QtJumpingEnemy* obj : jumping_enemies)
-        delete obj;
-    for (QtMoney* obj : moneys)
-        delete obj;
-    for (QtMovingPlatformHoriz* obj : moving_platforms)
-        delete obj;
-    boxes.clear();
-    full_boxes.clear();
-    ships.clear();
-    enemies.clear();
-    flying_enemies.clear();
-    jumping_enemies.clear();
-    moneys.clear();
-    moving_platforms.clear();
+
+    delete_objects(boxes);
+    delete_objects(full_boxes);
+    delete_objects(ships);
+    delete_objects(enemies);
+    delete_objects(flying_enemies);
+    delete_objects(jumping_enemies);
+    delete_objects(moneys);
+    delete_objects(moving_platforms);
 }
 
 void QtUIFactory::create_box(const Coord& top_left, int width, int height) {
