@@ -9,7 +9,9 @@ QString QtMario::get_sprite() const {
         return "sprites/mario_jump.png";
     if (v > 0.01)
         return "sprites/mario_fall.png";
-
+    if (moving) {
+        return "sprites/mario_move.png";
+    }
     return "sprites/mario_idle.png";
 }
 bool QtMario::is_facing_right() const noexcept {
@@ -17,6 +19,9 @@ bool QtMario::is_facing_right() const noexcept {
 }
 void QtMario::set_facing_right(bool right) noexcept {
     facing_right = right;
+}
+void QtMario::set_moving(bool value) noexcept {
+    moving = value;
 }
 
 QtEnemy::QtEnemy(const Coord& top_left, int width, int height) : Rect(top_left, width, height), Enemy(top_left, width, height) {}

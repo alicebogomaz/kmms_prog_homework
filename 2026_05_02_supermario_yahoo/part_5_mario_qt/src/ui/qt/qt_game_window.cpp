@@ -48,11 +48,13 @@ void QtGameWindow::keyReleaseEvent(QKeyEvent* event) {
 }
 
 void QtGameWindow::handle_input() {
+    mario->set_moving(false);
     if (pressed_keys.contains(Qt::Key_Left) || pressed_keys.contains(Qt::Key_A)) {
         mario->move_map_right();
 
         if (!game.check_static_collisions(mario)) {
             game.move_map_right();
+            mario->set_moving(true);
         }
 
         mario->move_map_left();
@@ -63,6 +65,7 @@ void QtGameWindow::handle_input() {
 
         if (!game.check_static_collisions(mario)) {
             game.move_map_left();
+            mario->set_moving(true);
         }
 
         mario->move_map_right();

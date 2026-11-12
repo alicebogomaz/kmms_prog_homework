@@ -15,11 +15,13 @@ namespace biv {
     class QtMario : public Mario, public QtUIObjectRectAdapter {
         private:
             bool facing_right = true;
+            bool moving = false;
         public:
             QtMario(const Coord& top_left, int width, int height);
             QString get_sprite() const override;
             bool is_facing_right() const noexcept override;
             void set_facing_right(bool right) noexcept;
+            void set_moving(bool value) noexcept;
     };
 
     class QtEnemy : public Enemy, public QtUIObjectRectAdapter {
